@@ -26,7 +26,7 @@ grocery_project
 --- 
 
 ## Command I used to export into .exe
-Note: This is _executed in /dist after clean and building the source_
+Note: This is _executed in /dist after clean and building the source_ <br>
 Note: You will need [WiX Toolset](https://github.com/wixtoolset/wix/releases/download/v6.0.1/wix-cli-x64.msi) for making the .exe (Add the directly of installation to PATH after installing WiX Toolset)
 
 Run this:
