@@ -1,0 +1,223 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="BillingReport" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6cba442-dd76-4380-a45b-76027d9996fe">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<parameter name="BILL_ID" class="java.lang.Integer"/>
+	<query language="SQL"><![CDATA[SELECT
+    b.bill_id,
+    b.total_price,
+    b.datetime,
+    c.name AS customer_name,
+    c.customer_id AS customer_id,
+    a.full_name AS cashier_name,
+    p.product_name,
+    si.quantity,
+    si.unit_price,
+    (si.quantity * si.unit_price) AS amount
+FROM sold_items si
+JOIN bill b ON si.bill_id = b.bill_id
+JOIN customer c ON b.customer_id = c.customer_id
+JOIN admin a ON b.cashier_id = a.user_id
+JOIN products p ON si.product_id = p.product_id
+WHERE b.bill_id = $P{BILL_ID}]]></query>
+	<field name="bill_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="bill_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="bill_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bill"/>
+	</field>
+	<field name="total_price" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="total_price"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bill"/>
+	</field>
+	<field name="datetime" class="java.time.LocalDateTime">
+		<property name="com.jaspersoft.studio.field.name" value="datetime"/>
+		<property name="com.jaspersoft.studio.field.label" value="datetime"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bill"/>
+	</field>
+	<field name="customer_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="customer_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="customer_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="customer_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="customer_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="cashier_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="full_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="cashier_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="admin"/>
+	</field>
+	<field name="product_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="product_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="product_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="products"/>
+	</field>
+	<field name="quantity" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="quantity"/>
+		<property name="com.jaspersoft.studio.field.label" value="quantity"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sold_items"/>
+	</field>
+	<field name="unit_price" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="unit_price"/>
+		<property name="com.jaspersoft.studio.field.label" value="unit_price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sold_items"/>
+	</field>
+	<field name="amount" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+	</field>
+	<background/>
+	<title height="150">
+		<element kind="frame" uuid="09c5f0ea-066c-4140-9ff9-b6f74ff7d82c" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699">
+			<element kind="staticText" uuid="7c08081e-a969-4c1f-8c45-ee7f40d292b2" x="20" y="20" width="234" height="43" forecolor="#FFFFFF" fontSize="34.0" bold="true">
+				<text><![CDATA[Invoice]]></text>
+			</element>
+			<element kind="staticText" uuid="3ed37f00-7352-43bd-83ea-6c4f99a5774f" x="395" y="43" width="180" height="20" forecolor="#FFFFFF" fontSize="14.0" bold="false" hTextAlign="Right">
+				<text><![CDATA[POS System]]></text>
+			</element>
+		</element>
+		<element kind="staticText" uuid="3bf07d53-ac62-41a3-83a3-7f08d1fb1a4d" x="1" y="80" width="98" height="20" fontSize="13.0">
+			<text><![CDATA[Registered Date:]]></text>
+		</element>
+		<element kind="textField" uuid="a5d90ac9-b709-4785-8d59-5b7f00db24a0" x="109" y="80" width="170" height="20" fontSize="13.0">
+			<expression><![CDATA[$F{datetime}.toString().replace("T", " ")]]></expression>
+		</element>
+		<element kind="staticText" uuid="12a50c33-c9a7-4d10-8390-79449c17f12e" x="281" y="80" width="98" height="20" fontSize="13.0">
+			<text><![CDATA[Generated Time:]]></text>
+		</element>
+		<element kind="textField" uuid="7866e3aa-88b3-4dfc-b46e-dc903dfac94c" x="390" y="80" width="164" height="20" fontSize="13.0" pattern="yyyy-MM-dd HH:mm:ss">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="staticText" uuid="4ffb015c-780c-4627-ae69-f5d3b24a4b60" x="1" y="100" width="108" height="20" fontSize="13.0">
+			<text><![CDATA[Customer Name:]]></text>
+		</element>
+		<element kind="textField" uuid="f7bb037a-b481-405b-9afc-ca545a2494ca" x="110" y="100" width="170" height="20" fontSize="13.0">
+			<expression><![CDATA[$F{customer_name}]]></expression>
+		</element>
+		<element kind="staticText" uuid="849de166-0152-4b33-85e6-ee52a346882f" x="280" y="100" width="100" height="20" fontSize="13.0">
+			<text><![CDATA[Cashier Name:]]></text>
+		</element>
+		<element kind="textField" uuid="31eae817-180a-4fd1-b1e8-8c67b8312784" x="390" y="100" width="164" height="20" fontSize="13.0">
+			<expression><![CDATA[$F{cashier_name}]]></expression>
+		</element>
+		<element kind="staticText" uuid="31293419-d635-4180-bdba-8b37b2909897" x="1" y="120" width="108" height="20" fontSize="13.0">
+			<text><![CDATA[Bill ID:]]></text>
+		</element>
+		<element kind="textField" uuid="1253c2a8-f3e8-450c-a73e-3f571eafab19" x="110" y="120" width="170" height="20" fontSize="13.0">
+			<expression><![CDATA[$F{bill_id}]]></expression>
+		</element>
+	</title>
+	<pageHeader height="13"/>
+	<columnHeader height="25">
+		<element kind="staticText" uuid="85a677fc-d583-4437-a645-e0b4210d0fd8" x="0" y="1" width="195" height="24" fontSize="16.0">
+			<text><![CDATA[Product Name]]></text>
+			<box>
+				<pen lineWidth="1.0"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="260267af-d4a7-4066-a938-56f1c3bb3424" x="195" y="1" width="120" height="24" fontSize="16.0">
+			<text><![CDATA[Unit Price]]></text>
+			<box>
+				<pen lineWidth="1.0"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="a4d4351b-348c-4fd5-96b7-10decfe7f7a6" x="315" y="1" width="120" height="24" fontSize="16.0">
+			<text><![CDATA[Qty]]></text>
+			<box>
+				<pen lineWidth="1.0"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="9bfecaf6-64b2-4e6a-a0d1-d69d7a254592" x="435" y="1" width="120" height="24" fontSize="16.0">
+			<text><![CDATA[Amount]]></text>
+			<box>
+				<pen lineWidth="1.0"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<element kind="textField" uuid="d3a7e3c0-f121-4a84-8b70-97b2318f4ac7" x="195" y="0" width="120" height="20" fontSize="13.0" hTextAlign="Right">
+				<expression><![CDATA["Rs. " + new java.text.DecimalFormat("#,##0.00").format($F{unit_price})]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8d03600b-4ae4-479c-8a15-02923fef05b6"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="8e927107-fbc8-4ba1-ae73-8578d1e2ebd2" x="315" y="0" width="120" height="20" fontSize="13.0" hTextAlign="Right">
+				<expression><![CDATA[$F{quantity}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a8ea6e1c-33da-4875-a9f1-9659e67dc524"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="ae1f46ce-9e32-4fe0-8882-7356f0ff5248" x="435" y="0" width="120" height="20" markup="none" fontSize="13.0" hTextAlign="Right">
+				<expression><![CDATA["Rs. " + new java.text.DecimalFormat("#,##0.00").format($F{amount})]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="255c8489-dc78-487f-90d9-bebde052982d"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="4bb7a171-46b7-4a4a-8e1f-6808c6ed2d6c" x="0" y="0" width="195" height="20" fontSize="13.0">
+				<expression><![CDATA[$F{product_name}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="658642a1-d37f-4196-8dfe-1341eb83830b"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="53">
+		<element kind="staticText" uuid="9b3ded36-9231-4092-8d88-ed82de51316f" x="1" y="1" width="36" height="20" fontSize="13.0">
+			<text><![CDATA[Total:]]></text>
+		</element>
+		<element kind="textField" uuid="501866f0-063c-4bfb-8171-da2849ddfe42" x="37" y="1" width="100" height="20" fontSize="13.0">
+			<expression><![CDATA["Rs. " + String.format("%.2f", $F{total_price})]]></expression>
+		</element>
+		<element kind="staticText" uuid="09303e11-c74c-44db-9dff-a817fb2f3c51" x="1" y="20" width="552" height="20" fontSize="13.0" hTextAlign="Center">
+			<text><![CDATA[Have a nice day! Please come again!]]></text>
+		</element>
+	</columnFooter>
+	<pageFooter height="40">
+		<element kind="textField" uuid="6abc8275-196f-46f3-93fd-96402755a894" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" hTextAlign="Right">
+			<expression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></expression>
+		</element>
+		<element kind="textField" uuid="f05eec52-8337-40d2-935c-982ec913d793" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" evaluationTime="Report">
+			<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="1059dfdc-42a2-4c74-8e73-1e7ab740da2f" x="0" y="4" width="100" height="13" pattern="EEEEE dd MMMMM yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+	</pageFooter>
+	<summary/>
+</jasperReport>
