@@ -33,6 +33,16 @@ CREATE TABLE `admin` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (1,'root','123456','Nethula Rankidu',NULL);
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `bill`
 --
 
@@ -54,6 +64,16 @@ CREATE TABLE `bill` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `bill`
+--
+
+LOCK TABLES `bill` WRITE;
+/*!40000 ALTER TABLE `bill` DISABLE KEYS */;
+INSERT INTO `bill` VALUES (5,1,2,'2025-07-05 17:52:09',400),(6,1,3,'2025-07-06 20:35:01',2400),(8,1,3,'2025-07-06 21:47:22',400),(10,1,3,'2025-07-06 21:51:43',400),(11,1,3,'2025-07-06 21:52:13',400),(12,1,3,'2025-07-06 21:56:07',400),(13,1,3,'2025-07-06 22:01:38',400),(14,1,2,'2025-07-06 22:09:39',400),(15,1,2,'2025-07-06 22:10:40',400),(17,1,3,'2025-07-06 22:13:12',400),(18,1,3,'2025-07-06 22:18:37',400),(19,1,1,'2025-07-06 22:21:55',400),(20,1,1,'2025-07-06 22:24:08',400),(21,1,3,'2025-07-06 22:30:26',400),(22,1,3,'2025-07-06 22:35:14',400),(24,1,3,'2025-07-06 22:39:13',400),(25,1,2,'2025-07-08 20:51:56',2000),(26,1,2,'2025-07-08 20:55:20',800),(27,1,2,'2025-07-12 14:07:58',800),(28,1,2,'2025-07-13 13:36:36',400);
+/*!40000 ALTER TABLE `bill` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `category`
 --
 
@@ -66,6 +86,16 @@ CREATE TABLE `category` (
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Fruits'),(2,'Vegetables'),(3,'Groceries'),(4,'Dairy Products'),(5,'Hygenic Products'),(6,'Stationary Items');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `customer`
@@ -88,6 +118,16 @@ CREATE TABLE `customer` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (1,'Guest','','',1970,3),(2,'Nethula Rankidu','0785949390','wintergreen6631@proton.me',2010,1),(3,'Sahan','','',2010,1);
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `gender`
 --
 
@@ -100,6 +140,16 @@ CREATE TABLE `gender` (
   PRIMARY KEY (`gender_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gender`
+--
+
+LOCK TABLES `gender` WRITE;
+/*!40000 ALTER TABLE `gender` DISABLE KEYS */;
+INSERT INTO `gender` VALUES (1,'Male'),(2,'Female'),(3,'Other');
+/*!40000 ALTER TABLE `gender` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `product_batches`
@@ -125,6 +175,16 @@ CREATE TABLE `product_batches` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `product_batches`
+--
+
+LOCK TABLES `product_batches` WRITE;
+/*!40000 ALTER TABLE `product_batches` DISABLE KEYS */;
+INSERT INTO `product_batches` VALUES (1,1,50,'2026-01-04 09:54:22','2025-06-04 09:54:01',380,400,20,30),(2,12,50,'2025-09-25 13:34:44','2025-05-25 13:34:24',180,200,48,2);
+/*!40000 ALTER TABLE `product_batches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `products`
 --
 
@@ -142,6 +202,16 @@ CREATE TABLE `products` (
   CONSTRAINT `fk_products_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'Uswatte Real Cream Cracker 490g','4792135080274',3),(2,'Panda Baby Rathmal Baby Soap','4792054016736',5),(3,'Calin Gold','4796000523958',5),(4,'Nature\'s Secrets Panda Baby Cream','4792054001121',5),(5,'Jupiter Extreme Men\'s Deodrant','4791097046717',5),(6,'Richard Colouray 80 pages B5 Book','4792066005247',6),(7,'Atlas B5 80 pages book','4792210131938',6),(8,'BIC Shaving Foam for men','4791010004275',5),(9,'Kotmale Vanilla & Chocolate Flavoured Ice Cream 1l','4792090120053',4),(10,'Kotmale Chocolate Flavoured Ice Cream 1L','4792090030024',4),(11,'KIST Squeezy Tomato Sauce 400g','47921430449065',3),(12,'Sprite 400ml','4792229048739',3);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `sold_items`
@@ -166,6 +236,24 @@ CREATE TABLE `sold_items` (
   CONSTRAINT `fk_sold_items_products1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sold_items`
+--
+
+LOCK TABLES `sold_items` WRITE;
+/*!40000 ALTER TABLE `sold_items` DISABLE KEYS */;
+INSERT INTO `sold_items` VALUES (1,5,1,1,1,400),(2,6,1,1,3,400),(3,6,1,1,2,400),(4,6,1,1,1,400),(5,8,1,1,1,400),(6,10,1,1,1,400),(7,11,1,1,1,400),(8,12,1,1,1,400),(9,13,1,1,1,400),(10,14,1,1,1,400),(11,15,1,1,1,400),(12,17,1,1,1,400),(13,18,1,1,1,400),(14,19,1,1,1,400),(15,20,1,1,1,400),(16,21,1,1,1,400),(17,22,1,1,1,400),(18,24,1,1,1,400),(19,25,1,1,5,400),(20,26,1,1,2,400),(21,27,1,1,2,400),(22,28,12,2,2,200);
+/*!40000 ALTER TABLE `sold_items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'grocery_store'
+--
+
+--
+-- Dumping routines for database 'grocery_store'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -176,4 +264,4 @@ CREATE TABLE `sold_items` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-13 21:06:41
+-- Dump completed on 2025-07-16 18:12:43
