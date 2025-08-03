@@ -31,5 +31,9 @@ Note: You will need [WiX Toolset](https://github.com/wixtoolset/wix/releases/dow
 
 Run this:
 ```
-jpackage --name GroceryStore --input . --main-jar grocery_store.jar --runtime-image custom-runtime --type exe --main-class gui.DashBoard --win-dir-chooser --win-shortcut --win-menu --verbose --icon grocery.ico
+jpackage --name GroceryStore --input . --main-jar grocery_store.jar --runtime-image custom-runtime --type exe --win-dir-chooser --win-shortcut --win-menu --verbose --app-version x.x.x --icon grocery.ico
+```
+or this:
+```
+jpackage --name GroceryStore --input . --main-jar grocery_store.jar --runtime-image custom-runtime --type app-image --verbose --app-version x.x.x --icon grocery.ico
 ```
