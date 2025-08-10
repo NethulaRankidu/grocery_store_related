@@ -2,7 +2,7 @@
 ## Files that are included here
 - custom-runtime - A stripped JVM that has just the necessary components to run the application
 - icon/grocery.ico - the icon used for the project
-- libraries - dependencies of the project
+- ~~libraries - dependencies of the project~~ (libraries are in the main project, in a folder named lib)
 
 ---
 
@@ -11,7 +11,7 @@
 grocery_project
 ├───build   // This is ignored by .gitignore
 ├───dist    // This too, is ignored by .gitignore
-│   ├───custom-runtime      // Post the custom-runtime as this after the build is done 
+│   ├───custom-runtime      // Paste the custom-runtime as this after the build is done 
 │   ├───lib // Libraries will be included here after clean and build
 │   ├───grocery.ico // Our icon is included here.
 │   └───GroceryStore.jar    // Where our jar exists
